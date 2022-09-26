@@ -1,0 +1,14 @@
+@startuml
+
+actor "User"
+
+package "Software system" {
+  [WebApplication]
+  database "Database"
+}
+
+User -> [WebApplication] : uses
+[WebApplication] -> [Database] : Reads from and writes to
+
+
+@enduml
