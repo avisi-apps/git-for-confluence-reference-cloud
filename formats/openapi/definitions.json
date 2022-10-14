@@ -1,0 +1,17 @@
+{
+  "swagger": "2.0",
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

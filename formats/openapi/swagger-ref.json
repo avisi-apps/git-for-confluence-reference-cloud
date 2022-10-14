@@ -1,0 +1,41 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/users": {
+      "post": {
+        "summary": "Adds a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "definitions.json#/definitions/User"
+              },
+              "examples": {
+                "Jessica": {
+                  "value": {
+                    "id": 10,
+                    "name": "Jessica Smith"
+                  }
+                },
+                "Ron": {
+                  "value": {
+                    "id": 11,
+                    "name": "Ron Stewart"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "definitions.yaml#/definitions/User"
+            }
+          }
+        }
+      }
+    }
+  }
+}
