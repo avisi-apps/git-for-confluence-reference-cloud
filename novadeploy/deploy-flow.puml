@@ -1,0 +1,27 @@
+@startuml
+
+title NovaDeploy — Deployment Sequence
+
+actor Developer
+participant "Git Repository" as Git
+participant "CI Pipeline" as CI
+participant "Container Registry" as Registry
+participant "NovaDeploy API" as API
+participant "Staging" as Staging
+participant "Production" as Production
+
+Developer -> Git : git push origin main
+Git -> CI : trigger pipeline
+CI -> CI : run tests
+CI -> Registry : push image (sha: abc123)
+Registry -> API : notify image ready
+API -> Staging : deploy release v1.4.2
+Staging --> API : health check passed
+API --> Developer : ✅ Staging deploy complete
+
+Developer -> API : promote to production
+API -> Production : deploy release v1.4.2
+Production --> API : health check passed
+API --> Developer : ✅ Production deploy complete
+
+@enduml

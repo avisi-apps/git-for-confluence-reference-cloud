@@ -1,0 +1,17 @@
+graph LR
+  Dev["Developer"] -->|"git push"| Git["Git Repository"]
+  Git -->|"webhook"| CI["CI Pipeline"]
+  CI -->|"build + test"| Registry["Container Registry"]
+  Registry -->|"deploy"| Orchestrator["NovaDeploy Orchestrator"]
+
+  Orchestrator --> Staging["Staging Environment"]
+  Orchestrator --> Production["Production Environment"]
+
+  Production --> Services["Running Services"]
+  Services --> Monitor["Monitoring & Logs"]
+  Monitor -->|"alert"| OnCall["On-call Engineer"]
+
+  style Dev fill:#E3F2FD,stroke:#1565C0
+  style Git fill:#F3E5F5,stroke:#6A1B9A
+  style Production fill:#E8F5E9,stroke:#2E7D32
+  style Monitor fill:#FFF3E0,stroke:#E65100

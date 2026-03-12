@@ -1,0 +1,49 @@
+graph TB
+  subgraph Client["Client Layer"]
+    CLI["CLI"]
+    Dashboard["Web Dashboard"]
+    API_Client["API Client"]
+  end
+
+  subgraph Platform["NovaDeploy Platform"]
+    Gateway["API Gateway"]
+    Auth["Auth Service"]
+    Deploy["Deploy Service"]
+    Config["Config Service"]
+    Monitor["Monitor Service"]
+  end
+
+  subgraph Data["Data Layer"]
+    DB[("PostgreSQL")]
+    Cache[("Redis Cache")]
+    Logs[("Log Store")]
+  end
+
+  subgraph Infra["Infrastructure"]
+    Orchestrator["Container Orchestrator"]
+    Registry["Image Registry"]
+    Secrets["Secrets Manager"]
+  end
+
+  CLI --> Gateway
+  Dashboard --> Gateway
+  API_Client --> Gateway
+
+  Gateway --> Auth
+  Gateway --> Deploy
+  Gateway --> Config
+  Gateway --> Monitor
+
+  Deploy --> Orchestrator
+  Deploy --> Registry
+  Config --> Secrets
+  Monitor --> Logs
+
+  Deploy --> DB
+  Config --> DB
+  Auth --> Cache
+
+  style Client fill:#E3F2FD,stroke:#1565C0
+  style Platform fill:#F3E5F5,stroke:#6A1B9A
+  style Data fill:#E8F5E9,stroke:#2E7D32
+  style Infra fill:#FFF3E0,stroke:#E65100
