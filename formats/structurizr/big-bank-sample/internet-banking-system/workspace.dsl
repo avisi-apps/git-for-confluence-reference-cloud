@@ -6,7 +6,7 @@ workspace extends ../model.dsl {
     description "The software architecture of the Big Bank plc Internet Banking System."
 
     model {
-        !ref internetbankingsystem {
+        !element internetbankingsystem {
             singlePageApplication = container "Single-Page Application" "Provides all of the Internet banking functionality to customers via their web browser." "JavaScript and Angular" "Web Browser"
             mobileApp = container "Mobile App" "Provides a limited subset of the Internet banking functionality to customers via their mobile device." "Xamarin" "Mobile App"
             webApplication = container "Web Application" "Delivers the static content and the Internet banking single page application." "Java and Spring MVC"
