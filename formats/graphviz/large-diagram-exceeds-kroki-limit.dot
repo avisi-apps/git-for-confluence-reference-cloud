@@ -1,0 +1,444 @@
+digraph LargeComplexSystem {
+    // This diagram is designed to exceed Kroki's compressed-content-max-length of 3000 characters
+    // It represents a complex microservices architecture with hundreds of nodes and connections
+    
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor=lightblue];
+    
+    // API Gateway Layer
+    subgraph cluster_gateway {
+        label="API Gateway Layer";
+        style=filled;
+        color=lightgrey;
+        
+        APIGateway1 [label="API Gateway 1\nLoad Balancer"];
+        APIGateway2 [label="API Gateway 2\nLoad Balancer"];
+        APIGateway3 [label="API Gateway 3\nLoad Balancer"];
+        RateLimiter [label="Rate Limiter\nRedis-based"];
+        AuthService [label="Authentication Service\nOAuth2 + JWT"];
+        APIDocumentation [label="API Documentation\nSwagger/OpenAPI"];
+    }
+    
+    // User Services Layer
+    subgraph cluster_user_services {
+        label="User Services";
+        style=filled;
+        color=lightgreen;
+        
+        UserService1 [label="User Service 1\nUser Profile Management"];
+        UserService2 [label="User Service 2\nUser Preferences"];
+        UserService3 [label="User Service 3\nUser Analytics"];
+        UserService4 [label="User Service 4\nUser Notifications"];
+        UserService5 [label="User Service 5\nUser Sessions"];
+        UserDB1 [label="User Database 1\nPostgreSQL Primary"];
+        UserDB2 [label="User Database 2\nPostgreSQL Replica"];
+        UserCache1 [label="User Cache 1\nRedis"];
+        UserCache2 [label="User Cache 2\nRedis"];
+    }
+    
+    // Product Services Layer
+    subgraph cluster_product_services {
+        label="Product Services";
+        style=filled;
+        color=lightcoral;
+        
+        ProductService1 [label="Product Service 1\nProduct Catalog"];
+        ProductService2 [label="Product Service 2\nProduct Search"];
+        ProductService3 [label="Product Service 3\nProduct Recommendations"];
+        ProductService4 [label="Product Service 4\nProduct Reviews"];
+        ProductService5 [label="Product Service 5\nProduct Inventory"];
+        ProductService6 [label="Product Service 6\nProduct Pricing"];
+        ProductService7 [label="Product Service 7\nProduct Images"];
+        ProductDB1 [label="Product Database 1\nMongoDB Primary"];
+        ProductDB2 [label="Product Database 2\nMongoDB Replica"];
+        ProductCache [label="Product Cache\nRedis Cluster"];
+        ElasticSearch1 [label="ElasticSearch 1\nSearch Index"];
+        ElasticSearch2 [label="ElasticSearch 2\nSearch Index"];
+        ElasticSearch3 [label="ElasticSearch 3\nSearch Index"];
+    }
+    
+    // Order Services Layer
+    subgraph cluster_order_services {
+        label="Order Services";
+        style=filled;
+        color=lightyellow;
+        
+        OrderService1 [label="Order Service 1\nOrder Creation"];
+        OrderService2 [label="Order Service 2\nOrder Processing"];
+        OrderService3 [label="Order Service 3\nOrder Fulfillment"];
+        OrderService4 [label="Order Service 4\nOrder Tracking"];
+        OrderService5 [label="Order Service 5\nOrder History"];
+        OrderService6 [label="Order Service 6\nOrder Returns"];
+        OrderDB1 [label="Order Database 1\nPostgreSQL Primary"];
+        OrderDB2 [label="Order Database 2\nPostgreSQL Replica"];
+        OrderQueue [label="Order Queue\nRabbitMQ"];
+    }
+    
+    // Payment Services Layer
+    subgraph cluster_payment_services {
+        label="Payment Services";
+        style=filled;
+        color=lightpink;
+        
+        PaymentService1 [label="Payment Service 1\nPayment Gateway"];
+        PaymentService2 [label="Payment Service 2\nPayment Processor"];
+        PaymentService3 [label="Payment Service 3\nPayment Validation"];
+        PaymentService4 [label="Payment Service 4\nRefund Service"];
+        PaymentService5 [label="Payment Service 5\nPayment History"];
+        PaymentDB [label="Payment Database\nPostgreSQL Encrypted"];
+        StripeGateway [label="Stripe Gateway\nExternal API"];
+        PayPalGateway [label="PayPal Gateway\nExternal API"];
+        BraintreeGateway [label="Braintree Gateway\nExternal API"];
+    }
+    
+    // Shipping Services Layer
+    subgraph cluster_shipping_services {
+        label="Shipping Services";
+        style=filled;
+        color=lightcyan;
+        
+        ShippingService1 [label="Shipping Service 1\nShipping Calculator"];
+        ShippingService2 [label="Shipping Service 2\nShipping Label Generator"];
+        ShippingService3 [label="Shipping Service 3\nShipping Tracker"];
+        ShippingService4 [label="Shipping Service 4\nShipping Notifications"];
+        ShippingDB [label="Shipping Database\nPostgreSQL"];
+        FedExAPI [label="FedEx API\nExternal"];
+        UPSApi [label="UPS API\nExternal"];
+        DHLApi [label="DHL API\nExternal"];
+        USPSApi [label="USPS API\nExternal"];
+    }
+    
+    // Inventory Services Layer
+    subgraph cluster_inventory_services {
+        label="Inventory Services";
+        style=filled;
+        color=lavender;
+        
+        InventoryService1 [label="Inventory Service 1\nStock Management"];
+        InventoryService2 [label="Inventory Service 2\nWarehouse Management"];
+        InventoryService3 [label="Inventory Service 3\nInventory Tracking"];
+        InventoryService4 [label="Inventory Service 4\nInventory Forecasting"];
+        InventoryService5 [label="Inventory Service 5\nInventory Alerts"];
+        InventoryDB1 [label="Inventory Database 1\nPostgreSQL Primary"];
+        InventoryDB2 [label="Inventory Database 2\nPostgreSQL Replica"];
+    }
+    
+    // Analytics Services Layer
+    subgraph cluster_analytics_services {
+        label="Analytics Services";
+        style=filled;
+        color=mistyrose;
+        
+        AnalyticsService1 [label="Analytics Service 1\nData Collection"];
+        AnalyticsService2 [label="Analytics Service 2\nData Processing"];
+        AnalyticsService3 [label="Analytics Service 3\nData Aggregation"];
+        AnalyticsService4 [label="Analytics Service 4\nReporting Engine"];
+        AnalyticsService5 [label="Analytics Service 5\nReal-time Dashboard"];
+        AnalyticsService6 [label="Analytics Service 6\nBusiness Intelligence"];
+        DataWarehouse [label="Data Warehouse\nSnowflake"];
+        Hadoop1 [label="Hadoop Cluster 1\nBig Data Processing"];
+        Hadoop2 [label="Hadoop Cluster 2\nBig Data Processing"];
+        Hadoop3 [label="Hadoop Cluster 3\nBig Data Processing"];
+        Kafka1 [label="Kafka Broker 1\nEvent Streaming"];
+        Kafka2 [label="Kafka Broker 2\nEvent Streaming"];
+        Kafka3 [label="Kafka Broker 3\nEvent Streaming"];
+    }
+    
+    // Notification Services Layer
+    subgraph cluster_notification_services {
+        label="Notification Services";
+        style=filled;
+        color=peachpuff;
+        
+        NotificationService1 [label="Notification Service 1\nEmail Notifications"];
+        NotificationService2 [label="Notification Service 2\nSMS Notifications"];
+        NotificationService3 [label="Notification Service 3\nPush Notifications"];
+        NotificationService4 [label="Notification Service 4\nIn-App Notifications"];
+        NotificationService5 [label="Notification Service 5\nNotification Templates"];
+        NotificationQueue [label="Notification Queue\nRabbitMQ"];
+        SendGrid [label="SendGrid\nEmail Provider"];
+        Twilio [label="Twilio\nSMS Provider"];
+        FCM [label="Firebase Cloud Messaging\nPush Notifications"];
+    }
+    
+    // Monitoring Services Layer
+    subgraph cluster_monitoring_services {
+        label="Monitoring & Observability";
+        style=filled;
+        color=lightsteelblue;
+        
+        PrometheusServer1 [label="Prometheus Server 1\nMetrics Collection"];
+        PrometheusServer2 [label="Prometheus Server 2\nMetrics Collection"];
+        GrafanaDashboard1 [label="Grafana Dashboard 1\nVisualization"];
+        GrafanaDashboard2 [label="Grafana Dashboard 2\nVisualization"];
+        ELKStack1 [label="Elasticsearch\nLog Aggregation"];
+        ELKStack2 [label="Logstash\nLog Processing"];
+        ELKStack3 [label="Kibana\nLog Visualization"];
+        Jaeger [label="Jaeger\nDistributed Tracing"];
+        AlertManager [label="Alert Manager\nIncident Management"];
+        PagerDuty [label="PagerDuty\nOn-Call Management"];
+    }
+    
+    // Security Services Layer
+    subgraph cluster_security_services {
+        label="Security Services";
+        style=filled;
+        color=indianred;
+        
+        SecurityService1 [label="Security Service 1\nThreat Detection"];
+        SecurityService2 [label="Security Service 2\nVulnerability Scanning"];
+        SecurityService3 [label="Security Service 3\nPenetration Testing"];
+        SecurityService4 [label="Security Service 4\nCompliance Monitoring"];
+        SecurityService5 [label="Security Service 5\nSecurity Audit Logs"];
+        WAF [label="Web Application Firewall\nCloudFlare"];
+        VaultService [label="HashiCorp Vault\nSecrets Management"];
+        CertManager [label="Certificate Manager\nSSL/TLS"];
+    }
+    
+    // Cache Layer
+    subgraph cluster_cache_layer {
+        label="Distributed Cache Layer";
+        style=filled;
+        color=wheat;
+        
+        RedisCluster1 [label="Redis Cluster 1\nCache Node"];
+        RedisCluster2 [label="Redis Cluster 2\nCache Node"];
+        RedisCluster3 [label="Redis Cluster 3\nCache Node"];
+        RedisCluster4 [label="Redis Cluster 4\nCache Node"];
+        RedisCluster5 [label="Redis Cluster 5\nCache Node"];
+        RedisSentinel [label="Redis Sentinel\nFailover Management"];
+    }
+    
+    // Message Queue Layer
+    subgraph cluster_message_queue {
+        label="Message Queue Infrastructure";
+        style=filled;
+        color=powderblue;
+        
+        RabbitMQ1 [label="RabbitMQ Node 1\nMessage Broker"];
+        RabbitMQ2 [label="RabbitMQ Node 2\nMessage Broker"];
+        RabbitMQ3 [label="RabbitMQ Node 3\nMessage Broker"];
+        RabbitMQManagement [label="RabbitMQ Management\nAdmin Console"];
+    }
+    
+    // CDN Layer
+    subgraph cluster_cdn {
+        label="Content Delivery Network";
+        style=filled;
+        color=honeydew;
+        
+        CDNNode1 [label="CDN Node 1\nCloudFront US-East"];
+        CDNNode2 [label="CDN Node 2\nCloudFront US-West"];
+        CDNNode3 [label="CDN Node 3\nCloudFront EU"];
+        CDNNode4 [label="CDN Node 4\nCloudFront Asia"];
+        OriginServer [label="Origin Server\nS3 Bucket"];
+    }
+    
+    // API Gateway connections
+    APIGateway1 -> RateLimiter;
+    APIGateway2 -> RateLimiter;
+    APIGateway3 -> RateLimiter;
+    RateLimiter -> AuthService;
+    AuthService -> UserService1;
+    AuthService -> UserService2;
+    AuthService -> UserService3;
+    
+    // User Services connections
+    APIGateway1 -> UserService1;
+    APIGateway2 -> UserService2;
+    APIGateway3 -> UserService3;
+    UserService1 -> UserDB1;
+    UserService1 -> UserCache1;
+    UserService2 -> UserDB1;
+    UserService2 -> UserCache2;
+    UserService3 -> UserDB2;
+    UserService4 -> UserDB2;
+    UserService5 -> UserCache1;
+    UserDB1 -> UserDB2 [label="Replication"];
+    UserCache1 -> UserCache2 [label="Sync"];
+    
+    // Product Services connections
+    APIGateway1 -> ProductService1;
+    APIGateway2 -> ProductService2;
+    APIGateway3 -> ProductService3;
+    ProductService1 -> ProductDB1;
+    ProductService1 -> ProductCache;
+    ProductService2 -> ElasticSearch1;
+    ProductService2 -> ElasticSearch2;
+    ProductService2 -> ElasticSearch3;
+    ProductService3 -> ProductDB1;
+    ProductService3 -> ProductCache;
+    ProductService4 -> ProductDB2;
+    ProductService5 -> ProductDB2;
+    ProductService6 -> ProductDB1;
+    ProductService7 -> ProductDB1;
+    ProductDB1 -> ProductDB2 [label="Replication"];
+    ElasticSearch1 -> ElasticSearch2 [label="Cluster"];
+    ElasticSearch2 -> ElasticSearch3 [label="Cluster"];
+    
+    // Order Services connections
+    APIGateway1 -> OrderService1;
+    APIGateway2 -> OrderService2;
+    APIGateway3 -> OrderService3;
+    OrderService1 -> OrderDB1;
+    OrderService1 -> OrderQueue;
+    OrderService2 -> OrderDB1;
+    OrderService2 -> OrderQueue;
+    OrderService3 -> OrderDB2;
+    OrderService4 -> OrderDB2;
+    OrderService5 -> OrderDB2;
+    OrderService6 -> OrderDB1;
+    OrderDB1 -> OrderDB2 [label="Replication"];
+    OrderQueue -> OrderService2;
+    OrderQueue -> OrderService3;
+    
+    // Payment Services connections
+    OrderService1 -> PaymentService1;
+    OrderService2 -> PaymentService2;
+    PaymentService1 -> PaymentDB;
+    PaymentService1 -> StripeGateway;
+    PaymentService1 -> PayPalGateway;
+    PaymentService1 -> BraintreeGateway;
+    PaymentService2 -> PaymentDB;
+    PaymentService3 -> PaymentDB;
+    PaymentService4 -> PaymentDB;
+    PaymentService5 -> PaymentDB;
+    
+    // Shipping Services connections
+    OrderService3 -> ShippingService1;
+    OrderService4 -> ShippingService2;
+    ShippingService1 -> ShippingDB;
+    ShippingService1 -> FedExAPI;
+    ShippingService1 -> UPSApi;
+    ShippingService1 -> DHLApi;
+    ShippingService1 -> USPSApi;
+    ShippingService2 -> ShippingDB;
+    ShippingService2 -> FedExAPI;
+    ShippingService3 -> ShippingDB;
+    ShippingService4 -> NotificationService1;
+    ShippingService4 -> NotificationService2;
+    
+    // Inventory Services connections
+    ProductService5 -> InventoryService1;
+    OrderService1 -> InventoryService1;
+    InventoryService1 -> InventoryDB1;
+    InventoryService2 -> InventoryDB1;
+    InventoryService3 -> InventoryDB2;
+    InventoryService4 -> InventoryDB2;
+    InventoryService5 -> NotificationService1;
+    InventoryDB1 -> InventoryDB2 [label="Replication"];
+    
+    // Analytics Services connections
+    UserService3 -> AnalyticsService1;
+    ProductService3 -> AnalyticsService1;
+    OrderService5 -> AnalyticsService1;
+    AnalyticsService1 -> Kafka1;
+    AnalyticsService1 -> Kafka2;
+    AnalyticsService1 -> Kafka3;
+    Kafka1 -> AnalyticsService2;
+    Kafka2 -> AnalyticsService2;
+    Kafka3 -> AnalyticsService2;
+    AnalyticsService2 -> Hadoop1;
+    AnalyticsService2 -> Hadoop2;
+    AnalyticsService2 -> Hadoop3;
+    AnalyticsService3 -> DataWarehouse;
+    AnalyticsService4 -> DataWarehouse;
+    AnalyticsService5 -> DataWarehouse;
+    AnalyticsService6 -> DataWarehouse;
+    Hadoop1 -> DataWarehouse;
+    Hadoop2 -> DataWarehouse;
+    Hadoop3 -> DataWarehouse;
+    
+    // Notification Services connections
+    UserService4 -> NotificationQueue;
+    OrderService4 -> NotificationQueue;
+    InventoryService5 -> NotificationQueue;
+    NotificationQueue -> NotificationService1;
+    NotificationQueue -> NotificationService2;
+    NotificationQueue -> NotificationService3;
+    NotificationQueue -> NotificationService4;
+    NotificationService1 -> SendGrid;
+    NotificationService2 -> Twilio;
+    NotificationService3 -> FCM;
+    NotificationService5 -> NotificationService1;
+    NotificationService5 -> NotificationService2;
+    NotificationService5 -> NotificationService3;
+    
+    // Monitoring connections
+    UserService1 -> PrometheusServer1;
+    UserService2 -> PrometheusServer1;
+    UserService3 -> PrometheusServer1;
+    ProductService1 -> PrometheusServer1;
+    ProductService2 -> PrometheusServer1;
+    ProductService3 -> PrometheusServer2;
+    OrderService1 -> PrometheusServer2;
+    OrderService2 -> PrometheusServer2;
+    PaymentService1 -> PrometheusServer2;
+    ShippingService1 -> PrometheusServer2;
+    InventoryService1 -> PrometheusServer2;
+    PrometheusServer1 -> GrafanaDashboard1;
+    PrometheusServer2 -> GrafanaDashboard2;
+    PrometheusServer1 -> AlertManager;
+    PrometheusServer2 -> AlertManager;
+    AlertManager -> PagerDuty;
+    ELKStack2 -> ELKStack1;
+    ELKStack1 -> ELKStack3;
+    
+    // Security connections
+    APIGateway1 -> WAF;
+    APIGateway2 -> WAF;
+    APIGateway3 -> WAF;
+    AuthService -> VaultService;
+    PaymentService1 -> VaultService;
+    SecurityService1 -> SecurityService5;
+    SecurityService2 -> SecurityService5;
+    SecurityService3 -> SecurityService5;
+    SecurityService4 -> SecurityService5;
+    WAF -> SecurityService1;
+    
+    // Cache Layer connections
+    UserCache1 -> RedisCluster1;
+    UserCache2 -> RedisCluster2;
+    ProductCache -> RedisCluster3;
+    ProductCache -> RedisCluster4;
+    RedisSentinel -> RedisCluster1;
+    RedisSentinel -> RedisCluster2;
+    RedisSentinel -> RedisCluster3;
+    RedisSentinel -> RedisCluster4;
+    RedisSentinel -> RedisCluster5;
+    
+    // Message Queue connections
+    OrderQueue -> RabbitMQ1;
+    NotificationQueue -> RabbitMQ2;
+    RabbitMQ1 -> RabbitMQ2 [label="Cluster"];
+    RabbitMQ2 -> RabbitMQ3 [label="Cluster"];
+    RabbitMQManagement -> RabbitMQ1;
+    RabbitMQManagement -> RabbitMQ2;
+    RabbitMQManagement -> RabbitMQ3;
+    
+    // CDN connections
+    ProductService7 -> OriginServer;
+    OriginServer -> CDNNode1;
+    OriginServer -> CDNNode2;
+    OriginServer -> CDNNode3;
+    OriginServer -> CDNNode4;
+    
+    // Cross-service dependencies
+    ProductService1 -> InventoryService1;
+    ProductService2 -> AnalyticsService1;
+    OrderService1 -> ProductService1;
+    OrderService1 -> UserService1;
+    OrderService1 -> InventoryService1;
+    PaymentService1 -> OrderService1;
+    ShippingService1 -> OrderService3;
+    AnalyticsService1 -> UserService3;
+    AnalyticsService1 -> ProductService3;
+    AnalyticsService1 -> OrderService5;
+    
+    // Tracing connections
+    APIGateway1 -> Jaeger;
+    UserService1 -> Jaeger;
+    ProductService1 -> Jaeger;
+    OrderService1 -> Jaeger;
+    PaymentService1 -> Jaeger;
+}
